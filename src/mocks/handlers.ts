@@ -90,6 +90,8 @@ export const handlers = [
     if (p.version >= finalVersion(p.template)) {
       emit(id, { type: 'version', version: p.version, changed: [] });
       emit(id, checksEvent(p.template));
+      const last = templates[p.template].script.findLast(([, e]) => e.type === 'message');
+      if (last) emit(id, last[1]);
     } else void play(id, templates[p.template].script);
   }),
 

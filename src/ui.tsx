@@ -46,7 +46,7 @@ export function LangToggle() {
   const { t, i18n } = useTranslation();
   return (
     <button
-      className="icon-btn w-auto px-2 gap-1.5 text-xs font-semibold"
+      className="icon-btn !inline-flex !w-auto items-center gap-1.5 px-2 text-xs font-semibold"
       onClick={() => void i18n.changeLanguage(i18n.language.startsWith('ru') ? 'en' : 'ru')}
       aria-label={t('common.language')}
     >

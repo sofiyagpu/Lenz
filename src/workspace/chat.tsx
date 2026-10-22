@@ -12,7 +12,9 @@ export function Chat({ items, send }: { items: ChatItem[]; send: (text: string) 
   const input = useRef<HTMLTextAreaElement>(null);
   const end = useRef<HTMLDivElement>(null);
   const setViewVersion = useEditor((s) => s.setViewVersion);
-  useEffect(() => end.current?.scrollIntoView({ block: 'end' }), [items.length]);
+  useEffect(() => {
+    void end.current?.scrollIntoView({ block: 'end' }); // newer browsers return a Promise here
+  }, [items.length]);
 
   // A question or error is answered once anything is said after it.
   const answered = (i: number) => items.slice(i + 1).some((x) => x.type === 'user');

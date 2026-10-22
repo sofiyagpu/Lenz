@@ -3,7 +3,7 @@ const base = import.meta.env.VITE_API_URL ?? '/api';
 // ponytail: MSW stands in for the backend until VITE_API_URL is set (stage 9).
 export const ready: Promise<unknown> = import.meta.env.VITE_API_URL
   ? Promise.resolve()
-  : import('./mocks/browser').then(({ worker }) => worker.start({ onUnhandledRequest: 'bypass', quiet: true }));
+  : import('./mocks/browser').then(({ worker }) => worker.start({ onUnhandledFrame: 'bypass', quiet: true }));
 
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   await ready;
